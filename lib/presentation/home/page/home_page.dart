@@ -1,5 +1,7 @@
+import 'package:bank_mas/presentation/home/widget/article_sections.dart';
+import 'package:bank_mas/presentation/home/widget/menu_item_sections.dart';
 import 'package:flutter/material.dart';
-import 'package:bank_mas/core/router/router_constant.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,29 +11,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Widget _buildBody() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const MenuItemSections(),
+        SizedBox(height: 4.h),
+        const ArticleSections(),
+      ],
+    );
+  }
+
+  PreferredSizeWidget _buildAppbar() {
+    return AppBar(
+      title: const Text('Flutter Assignment'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      body: Center(
-        child: InkWell(
-          onTap: () =>
-              Navigator.pushNamed(context, RouterConstant.menuPage),
-          child: Container(
-            color: Colors.blue,
-            height: 50,
-            width: 100,
-            child: const Center(
-              child: Text(
-                'Menu',
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ),
-      ),
+      appBar: _buildAppbar(),
+      body: _buildBody(),
     );
   }
 }

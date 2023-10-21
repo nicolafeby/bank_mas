@@ -1,7 +1,9 @@
+import 'package:bank_mas/injector/injector.dart';
+import 'package:bank_mas/presentation/home/bloc/menu_and_article_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:bank_mas/core/router/router_constant.dart';
-import 'package:bank_mas/presentation/home/menu/menu_page.dart';
 import 'package:bank_mas/presentation/home/page/home_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Router {
   Route generateRouter(Widget page, RouteSettings settings) {
@@ -15,10 +17,12 @@ class Router {
     switch (settings.name) {
       case RouterConstant.homePage:
         return const HomePage();
-      case RouterConstant.menuPage:
-        return const MenuPage();
+
       default:
-        return const HomePage();
+        return BlocProvider(
+          create: (context) => sl<MenuAndArticleBloc>(),
+          child: const HomePage(),
+        );
     }
   }
 

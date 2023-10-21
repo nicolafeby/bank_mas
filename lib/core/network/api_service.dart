@@ -1,6 +1,9 @@
+import 'package:bank_mas/core/models/response/menu_and_article_model.dart';
+import 'package:bank_mas/domain/entities/menu_and_article_entitity.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:bank_mas/core/utils/app_constants.dart';
+
 import 'package:ua_client_hints/ua_client_hints.dart';
 
 class ApiService with DioMixin implements Dio {
@@ -27,4 +30,9 @@ class ApiService with DioMixin implements Dio {
         baseUrl: AppConstant.baseUrl,
         contentType: 'application/json',
       );
+
+  Future<MenuAndArticleEntity> getMenuAndArticle() async {
+    var response = await get('/home');
+    return MenuAndArticleModel.fromJson(response.data);
+  }
 }

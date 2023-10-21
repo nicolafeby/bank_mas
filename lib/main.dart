@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bank_mas/core/router/router.dart' as router;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'injector/injector.dart' as dl;
 
@@ -12,12 +13,18 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ScreenUtilInit(
+      builder: (context, child) => MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          appBarTheme: const AppBarTheme(
+            iconTheme: IconThemeData(color: Colors.white),
+            color: Color(0xff3f51b5),
+          ),
+        ),
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: router.Router().generateAppRoutes,
       ),
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: router.Router().generateAppRoutes,
     );
   }
 }
