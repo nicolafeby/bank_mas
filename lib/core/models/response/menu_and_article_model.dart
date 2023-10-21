@@ -6,7 +6,7 @@ part 'menu_and_article_model.g.dart';
 @JsonSerializable()
 class MenuAndArticleModel extends MenuAndArticleEntity {
   @JsonKey(name: 'data')
-  final DataModel? dataModel;
+  final List<DataModel>? dataModel;
 
   MenuAndArticleModel({
     required this.dataModel,
@@ -44,18 +44,17 @@ class DataModel extends DataEntities {
 @JsonSerializable()
 class ItemsModel extends ItemsEntities {
   ItemsModel({
-   required String? articleTitle,
-  required String? articleImage,
-  required String? link,
-  required String? productName,
-  required String? productImage,
+    required String? articleTitle,
+    required String? articleImage,
+    required String? link,
+    required String? productName,
+    required String? productImage,
   }) : super(
           articleImage: articleImage,
           articleTitle: articleTitle,
           link: link,
           productImage: productImage,
           productName: productName,
-          
         );
 
   factory ItemsModel.fromJson(Map<String, dynamic> json) =>

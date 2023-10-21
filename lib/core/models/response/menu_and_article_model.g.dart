@@ -8,9 +8,9 @@ part of 'menu_and_article_model.dart';
 
 MenuAndArticleModel _$MenuAndArticleModelFromJson(Map<String, dynamic> json) =>
     MenuAndArticleModel(
-      dataModel: json['data'] == null
-          ? null
-          : DataModel.fromJson(json['data'] as Map<String, dynamic>),
+      dataModel: (json['data'] as List<dynamic>?)
+          ?.map((e) => DataModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$MenuAndArticleModelToJson(

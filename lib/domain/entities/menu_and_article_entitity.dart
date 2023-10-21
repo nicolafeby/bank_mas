@@ -1,8 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
 class MenuAndArticleEntity {
-  @JsonKey(ignore: true)
-  DataEntities? data;
+  // @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  List<DataEntities>? data;
 
   MenuAndArticleEntity({
     this.data,
@@ -10,7 +11,8 @@ class MenuAndArticleEntity {
 }
 
 class DataEntities {
-  @JsonKey(ignore: true)
+  // @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<ItemsEntities>? items;
   String? section;
   String? sectionTitle;

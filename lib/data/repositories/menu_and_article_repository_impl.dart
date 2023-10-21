@@ -12,14 +12,13 @@ class MenuAndArticleRepositoryImpl implements MenuAndArticleRepository {
   MenuAndArticleRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failures, MenuAndArticleEntity>> getMenuAndArticle(
-    
-  ) async {
+  Future<Either<Failures, MenuAndArticleEntity>> getMenuAndArticle() async {
     try {
       final resp = await remoteDataSource.getMenuAndArticle();
       return Right(resp);
+
       // if (resp.statusCode == 200) return Right(resp);
-      // return Left(ServerFailure());
+      // return const Left(ServerFailure('error'));
     } catch (e, stack) {
       log('[$runtimeType]: $e $stack');
       return const Left(ServerFailure('error'));

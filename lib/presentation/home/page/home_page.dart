@@ -1,6 +1,8 @@
+import 'package:bank_mas/presentation/home/bloc/menu_and_article_bloc.dart';
 import 'package:bank_mas/presentation/home/widget/article_sections.dart';
 import 'package:bank_mas/presentation/home/widget/menu_item_sections.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,14 +13,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late MenuAndArticleBloc _bloc;
+
+  @override
+  void initState() {
+    _bloc = BlocProvider.of(context);
+    _bloc.add(MenuAndArticleStarted());
+    super.initState();
+  }
+
   Widget _buildBody() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const MenuItemSections(),
-        SizedBox(height: 4.h),
-        const ArticleSections(),
-      ],
+    return BlocBuilder<MenuAndArticleBloc, MenuAndArticleState>(
+      builder: (context, state) {
+        if (state is MenuAndArticleLoadInProgress) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is MenuAndArticleLoadInFailure) {
+          return const Center(child: Text('hmm, error ya'));
+        }
+
+        (state as MenuAndArticleLoadInSuccess);
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const MenuItemSections(),
+            SizedBox(height: 4.h),
+            const ArticleSections(),
+          ],
+        );
+      },
     );
   }
 
