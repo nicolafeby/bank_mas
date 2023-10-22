@@ -1,5 +1,3 @@
-
-
 import 'package:bank_mas/data/datasources/menu_and_article_remote_datasource.dart';
 import 'package:bank_mas/data/repositories/menu_and_article_repository_impl.dart';
 import 'package:bank_mas/domain/repositories/menu_and_article_repository.dart';

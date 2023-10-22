@@ -31,9 +31,6 @@ class _HomePageState extends State<HomePage> {
         } else if (state is MenuAndArticleLoadInFailure) {
           return const Center(child: Text('hmm, error ya'));
         }
-        // else if (state is MenuAndArticleLoadInSuccess) {
-        //   return const HomeSkeleton();
-        // }
 
         (state as MenuAndArticleLoadInSuccess);
 
