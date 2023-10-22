@@ -28,7 +28,14 @@ class MenuItemSections extends StatelessWidget {
       ),
       child: Column(
         children: [
-          CustomNetworkImage(imageUrl: icon),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8.r),
+            child: CustomNetworkImage(
+              height: 55.r,
+              width: 55.r,
+              imageUrl: icon,
+            ),
+          ),
           Text(
             title,
             style: Theme.of(context).textTheme.bodyLarge,
