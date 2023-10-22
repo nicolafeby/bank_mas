@@ -32,7 +32,7 @@ class ApiService with DioMixin implements Dio {
       );
 
   Future<MenuAndArticleEntity> getMenuAndArticle() async {
-    var response = await get('/home');
+    var response = await get('home');
     return MenuAndArticleModel.fromJson(response.data);
   }
 }

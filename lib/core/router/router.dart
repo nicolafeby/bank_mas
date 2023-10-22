@@ -1,5 +1,7 @@
+import 'package:bank_mas/core/argument/webview_arg.dart';
 import 'package:bank_mas/injector/injector.dart';
 import 'package:bank_mas/presentation/home/bloc/menu_and_article_bloc.dart';
+import 'package:bank_mas/presentation/webview/webview_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bank_mas/core/router/router_constant.dart';
 import 'package:bank_mas/presentation/home/page/home_page.dart';
@@ -17,7 +19,8 @@ class Router {
     switch (settings.name) {
       case RouterConstant.homePage:
         return const HomePage();
-
+      case RouterConstant.webview:
+        return WebviewPage(arg: settings.arguments as WebViewArg);
       default:
         return BlocProvider(
           create: (context) => sl<MenuAndArticleBloc>(),

@@ -6,8 +6,10 @@ import 'package:dartz/dartz.dart';
 
 class MenuAndArticleUsecase
     implements Usecase<MenuAndArticleEntity, NoParams> {
-  MenuAndArticleRepository repository;
   MenuAndArticleUsecase({required this.repository});
+
+  MenuAndArticleRepository repository;
+
   @override
   Future<Either<Failures, MenuAndArticleEntity>> call(
        NoParams params) async {

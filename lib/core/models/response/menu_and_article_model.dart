@@ -5,9 +5,6 @@ part 'menu_and_article_model.g.dart';
 
 @JsonSerializable()
 class MenuAndArticleModel extends MenuAndArticleEntity {
-  @JsonKey(name: 'data')
-  final List<DataModel>? dataModel;
-
   MenuAndArticleModel({
     required this.dataModel,
   }) : super(
@@ -17,14 +14,14 @@ class MenuAndArticleModel extends MenuAndArticleEntity {
   factory MenuAndArticleModel.fromJson(Map<String, dynamic> json) =>
       _$MenuAndArticleModelFromJson(json);
 
+  @JsonKey(name: 'data')
+  final List<DataModel>? dataModel;
+
   Map<String, dynamic> toJson() => _$MenuAndArticleModelToJson(this);
 }
 
 @JsonSerializable()
 class DataModel extends DataEntities {
-  @JsonKey(name: 'items')
-  final List<ItemsModel>? itemsModel;
-
   DataModel({
     required this.itemsModel,
     required String? section,
@@ -37,6 +34,9 @@ class DataModel extends DataEntities {
 
   factory DataModel.fromJson(Map<String, dynamic> json) =>
       _$DataModelFromJson(json);
+
+  @JsonKey(name: 'items')
+  final List<ItemsModel>? itemsModel;
 
   Map<String, dynamic> toJson() => _$DataModelToJson(this);
 }

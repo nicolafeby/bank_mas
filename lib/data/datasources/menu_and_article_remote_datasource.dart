@@ -7,9 +7,10 @@ abstract class MenuAndArticleRemoteDataSource {
 
 class MenuAndArticleRemoteDataSourceImpl
     implements MenuAndArticleRemoteDataSource {
+  MenuAndArticleRemoteDataSourceImpl({required this.apiService});
+
   final ApiService apiService;
 
-  MenuAndArticleRemoteDataSourceImpl({required this.apiService});
   @override
   Future<MenuAndArticleEntity> getMenuAndArticle() async {
     final resp = apiService.getMenuAndArticle();

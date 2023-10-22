@@ -1,5 +1,6 @@
 import 'package:bank_mas/presentation/home/bloc/menu_and_article_bloc.dart';
 import 'package:bank_mas/presentation/home/widget/article_sections.dart';
+import 'package:bank_mas/presentation/home/widget/home_skeleton.dart';
 import 'package:bank_mas/presentation/home/widget/menu_item_sections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,19 +27,22 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<MenuAndArticleBloc, MenuAndArticleState>(
       builder: (context, state) {
         if (state is MenuAndArticleLoadInProgress) {
-          return const Center(child: CircularProgressIndicator());
+          return const HomeSkeleton();
         } else if (state is MenuAndArticleLoadInFailure) {
           return const Center(child: Text('hmm, error ya'));
         }
+        // else if (state is MenuAndArticleLoadInSuccess) {
+        //   return const HomeSkeleton();
+        // }
 
         (state as MenuAndArticleLoadInSuccess);
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const MenuItemSections(),
+            MenuItemSections(entity: state.entity),
             SizedBox(height: 4.h),
-            const ArticleSections(),
+            ArticleSections(entity: state.entity),
           ],
         );
       },

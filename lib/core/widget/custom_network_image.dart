@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomNetworkImage extends StatelessWidget {
@@ -43,10 +44,13 @@ class CustomNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrl == null) return _buildEmptyImage();
+    final url = imageUrl;
+    if (url == null) return _buildEmptyImage();
 
     return CachedNetworkImage(
-      imageUrl: imageUrl!,
+      cacheManager: CacheManager(
+          Config('custom_cache_key', stalePeriod: const Duration(days: 1))),
+      imageUrl: url,
       height: height,
       width: width,
       fit: BoxFit.cover,

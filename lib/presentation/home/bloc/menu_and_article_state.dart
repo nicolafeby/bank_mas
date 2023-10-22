@@ -10,11 +10,11 @@ sealed class MenuAndArticleState extends Equatable {
 class MenuAndArticleLoadInProgress extends MenuAndArticleState {}
 
 class MenuAndArticleLoadInSuccess extends MenuAndArticleState {
-  final MenuAndArticleEntity entity;
-
   const MenuAndArticleLoadInSuccess({
     required this.entity,
   });
+
+  final MenuAndArticleEntity entity;
 
   @override
   List<Object> get props => [entity];

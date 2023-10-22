@@ -9,12 +9,13 @@ part 'menu_and_article_state.dart';
 
 class MenuAndArticleBloc
     extends Bloc<MenuAndArticleEvent, MenuAndArticleState> {
-  final MenuAndArticleUsecase usecase;
   MenuAndArticleBloc({
     required this.usecase,
   }) : super(MenuAndArticleLoadInProgress()) {
     on<MenuAndArticleStarted>(_onMenuAndArticleStarted);
   }
+
+  final MenuAndArticleUsecase usecase;
 
   _onMenuAndArticleStarted(
     MenuAndArticleStarted event,

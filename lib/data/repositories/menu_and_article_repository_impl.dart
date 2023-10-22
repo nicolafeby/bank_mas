@@ -7,9 +7,9 @@ import 'package:bank_mas/domain/repositories/menu_and_article_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class MenuAndArticleRepositoryImpl implements MenuAndArticleRepository {
-  final MenuAndArticleRemoteDataSource remoteDataSource;
-
   MenuAndArticleRepositoryImpl({required this.remoteDataSource});
+
+  final MenuAndArticleRemoteDataSource remoteDataSource;
 
   @override
   Future<Either<Failures, MenuAndArticleEntity>> getMenuAndArticle() async {
