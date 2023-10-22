@@ -1,3 +1,4 @@
+import 'package:bank_mas/core/widget/error_widget.dart';
 import 'package:bank_mas/presentation/home/bloc/menu_and_article_bloc.dart';
 import 'package:bank_mas/presentation/home/widget/article_sections.dart';
 import 'package:bank_mas/presentation/home/widget/home_skeleton.dart';
@@ -18,9 +19,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    super.initState();
     _bloc = BlocProvider.of(context);
     _bloc.add(MenuAndArticleStarted());
-    super.initState();
   }
 
   Widget _buildBody() {
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         if (state is MenuAndArticleLoadInProgress) {
           return const HomeSkeleton();
         } else if (state is MenuAndArticleLoadInFailure) {
-          return const Center(child: Text('hmm, error ya'));
+          _showErrorDialog();
         }
 
         (state as MenuAndArticleLoadInSuccess);
@@ -58,5 +59,16 @@ class _HomePageState extends State<HomePage> {
       appBar: _buildAppbar(),
       body: _buildBody(),
     );
+  }
+
+  Future<void> _showErrorDialog() {
+    return Future.delayed(Duration.zero, () {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return const CustomErrorWidget();
+        },
+      );
+    });
   }
 }
