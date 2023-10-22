@@ -5,41 +5,6 @@ import 'package:shimmer/shimmer.dart';
 class HomeSkeleton extends StatelessWidget {
   const HomeSkeleton({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 8.h),
-        _buildMenuSkeleton(),
-        SizedBox(height: 12.h),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w),
-          child: Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
-            child: Container(
-              height: 16.h,
-              width: 55.w,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(4.r))),
-            ),
-          ),
-        ),
-        SizedBox(height: 4.h),
-        Expanded(
-          child: ListView.separated(
-            padding: EdgeInsets.all(8.r),
-            itemBuilder: (context, index) => _buildArticleSkeleton(),
-            separatorBuilder: (context, index) => SizedBox(height: 8.h),
-            itemCount: 5,
-          ),
-        )
-      ],
-    );
-  }
-
   Widget _buildArticleSkeleton() {
     return Card(
       shape: RoundedRectangleBorder(
@@ -132,6 +97,41 @@ class HomeSkeleton extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 8.h),
+        _buildMenuSkeleton(),
+        SizedBox(height: 12.h),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          child: Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              height: 16.h,
+              width: 55.w,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(4.r))),
+            ),
+          ),
+        ),
+        SizedBox(height: 4.h),
+        Expanded(
+          child: ListView.separated(
+            padding: EdgeInsets.all(8.r),
+            itemBuilder: (context, index) => _buildArticleSkeleton(),
+            separatorBuilder: (context, index) => SizedBox(height: 8.h),
+            itemCount: 5,
+          ),
+        )
+      ],
     );
   }
 }
